@@ -1,0 +1,621 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zlkcxd.capital.dao.mapper.InvestProjectMapper" >
+  <resultMap id="BaseResultMap" type="com.zlkcxd.capital.dao.domain.InvestProject" >
+    <!--
+     WARNING -  该映射文件为自动生成, 请勿修改.
+    -->
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="is_delete" property="isDelete" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="project_name" property="projectName" jdbcType="VARCHAR" />
+    <result column="invest_project_id" property="investProjectId" jdbcType="BIGINT" />
+    <result column="invest_type" property="investType" jdbcType="INTEGER" />
+    <result column="project_type" property="projectType" jdbcType="INTEGER" />
+    <result column="project_amount" property="projectAmount" jdbcType="DECIMAL" />
+    <result column="project_profit_tate" property="projectProfitTate" jdbcType="DECIMAL" />
+    <result column="company_invest_amount" property="companyInvestAmount" jdbcType="DECIMAL" />
+    <result column="raise_capital_limit" property="raiseCapitalLimit" jdbcType="DECIMAL" />
+    <result column="project_start_date" property="projectStartDate" jdbcType="DATE" />
+    <result column="project_end_date" property="projectEndDate" jdbcType="DATE" />
+    <result column="project_days" property="projectDays" jdbcType="INTEGER" />
+    <result column="raise_date" property="raiseDate" jdbcType="DATE" />
+    <result column="Invest_day" property="investDay" jdbcType="DATE" />
+    <result column="year_open_date" property="yearOpenDate" jdbcType="DATE" />
+    <result column="project_stage" property="projectStage" jdbcType="INTEGER" />
+    <result column="open_times" property="openTimes" jdbcType="INTEGER" />
+    <result column="is_open_raise" property="isOpenRaise" jdbcType="INTEGER" />
+    <result column="project_describe" property="projectDescribe" jdbcType="VARCHAR" />
+    <result column="project_balance" property="projectBalance" jdbcType="DECIMAL" />
+    <result column="settlement_status" property="settlementStatus" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="approval_process_id" property="approvalProcessId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <!--
+     WARNING -  该映射文件为自动生成, 请勿修改.
+    -->
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <!--
+     WARNING -  该映射文件为自动生成, 请勿修改.
+    -->
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    <!--
+     WARNING -  该映射文件为自动生成, 请勿修改.
+    -->
+    id, is_delete, create_time, update_time, project_name, invest_project_id, invest_type, 
+    project_type, project_amount, project_profit_tate, company_invest_amount, raise_capital_limit, 
+    project_start_date, project_end_date, project_days, raise_date, Invest_day, year_open_date, 
+    project_stage, open_times, is_open_raise, project_describe, project_balance, settlement_status, 
+    user_id, approval_process_id
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zlkcxd.capital.dao.domain.InvestProjectCriteria" >
+    <!--
+     WARNING -  该映射文件为自动生成, 请勿修改.
+    -->
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from invest_project
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limit != 0 " >
+       limit ${start} , ${limit}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    <!--
+     WARNING -  该映射文件为自动生成, 请勿修改.
+    -->
+    select 
+    <include refid="Base_Column_List" />
+    from invest_project
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="lockByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    <!--
+     WARNING -  该映射文件为自动生成, 请勿修改.
+    -->
+    select 
+    <include refid="Base_Column_List" />
+    from invest_project
+    where id = #{id,jdbcType=BIGINT} for update 
+  </select>
+  <select id="lockByExample" resultMap="BaseResultMap" parameterType="com.zlkcxd.capital.dao.domain.InvestProjectCriteria" >
+    <!--
+     WARNING -  该映射文件为自动生成, 请勿修改.
+    -->
+    select
+    <include refid="Base_Column_List" />
+    from invest_project
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+     for update 
+  </select>
+  <select id="lastInsertId" resultType="java.lang.Long" >
+    <!--
+     WARNING -  该映射文件为自动生成, 请勿修改.
+    -->
+      select case lastId when 0 then 'can not get last insert id' else lastId end as lastId from ( select  LAST_INSERT_ID() lastId ) s1  
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    <!--
+     WARNING -  该映射文件为自动生成, 请勿修改.
+    -->
+    delete from invest_project
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zlkcxd.capital.dao.domain.InvestProjectCriteria" >
+    <!--
+     WARNING -  该映射文件为自动生成, 请勿修改.
+    -->
+    delete from invest_project
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zlkcxd.capital.dao.domain.InvestProject" >
+    <!--
+     WARNING -  该映射文件为自动生成, 请勿修改.
+    -->
+    insert into invest_project (id, is_delete, create_time, 
+      update_time, project_name, invest_project_id, 
+      invest_type, project_type, project_amount, 
+      project_profit_tate, company_invest_amount, 
+      raise_capital_limit, project_start_date, project_end_date, 
+      project_days, raise_date, Invest_day, 
+      year_open_date, project_stage, open_times, 
+      is_open_raise, project_describe, project_balance, 
+      settlement_status, user_id, approval_process_id
+      )
+    values (#{id,jdbcType=BIGINT}, #{isDelete,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{projectName,jdbcType=VARCHAR}, #{investProjectId,jdbcType=BIGINT}, 
+      #{investType,jdbcType=INTEGER}, #{projectType,jdbcType=INTEGER}, #{projectAmount,jdbcType=DECIMAL}, 
+      #{projectProfitTate,jdbcType=DECIMAL}, #{companyInvestAmount,jdbcType=DECIMAL}, 
+      #{raiseCapitalLimit,jdbcType=DECIMAL}, #{projectStartDate,jdbcType=DATE}, #{projectEndDate,jdbcType=DATE}, 
+      #{projectDays,jdbcType=INTEGER}, #{raiseDate,jdbcType=DATE}, #{investDay,jdbcType=DATE}, 
+      #{yearOpenDate,jdbcType=DATE}, #{projectStage,jdbcType=INTEGER}, #{openTimes,jdbcType=INTEGER}, 
+      #{isOpenRaise,jdbcType=INTEGER}, #{projectDescribe,jdbcType=VARCHAR}, #{projectBalance,jdbcType=DECIMAL}, 
+      #{settlementStatus,jdbcType=INTEGER}, #{userId,jdbcType=BIGINT}, #{approvalProcessId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zlkcxd.capital.dao.domain.InvestProject" >
+    <!--
+     WARNING -  该映射文件为自动生成, 请勿修改.
+    -->
+    insert into invest_project
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="isDelete != null" >
+        is_delete,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="projectName != null" >
+        project_name,
+      </if>
+      <if test="investProjectId != null" >
+        invest_project_id,
+      </if>
+      <if test="investType != null" >
+        invest_type,
+      </if>
+      <if test="projectType != null" >
+        project_type,
+      </if>
+      <if test="projectAmount != null" >
+        project_amount,
+      </if>
+      <if test="projectProfitTate != null" >
+        project_profit_tate,
+      </if>
+      <if test="companyInvestAmount != null" >
+        company_invest_amount,
+      </if>
+      <if test="raiseCapitalLimit != null" >
+        raise_capital_limit,
+      </if>
+      <if test="projectStartDate != null" >
+        project_start_date,
+      </if>
+      <if test="projectEndDate != null" >
+        project_end_date,
+      </if>
+      <if test="projectDays != null" >
+        project_days,
+      </if>
+      <if test="raiseDate != null" >
+        raise_date,
+      </if>
+      <if test="investDay != null" >
+        Invest_day,
+      </if>
+      <if test="yearOpenDate != null" >
+        year_open_date,
+      </if>
+      <if test="projectStage != null" >
+        project_stage,
+      </if>
+      <if test="openTimes != null" >
+        open_times,
+      </if>
+      <if test="isOpenRaise != null" >
+        is_open_raise,
+      </if>
+      <if test="projectDescribe != null" >
+        project_describe,
+      </if>
+      <if test="projectBalance != null" >
+        project_balance,
+      </if>
+      <if test="settlementStatus != null" >
+        settlement_status,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="approvalProcessId != null" >
+        approval_process_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="isDelete != null" >
+        #{isDelete,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="projectName != null" >
+        #{projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="investProjectId != null" >
+        #{investProjectId,jdbcType=BIGINT},
+      </if>
+      <if test="investType != null" >
+        #{investType,jdbcType=INTEGER},
+      </if>
+      <if test="projectType != null" >
+        #{projectType,jdbcType=INTEGER},
+      </if>
+      <if test="projectAmount != null" >
+        #{projectAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="projectProfitTate != null" >
+        #{projectProfitTate,jdbcType=DECIMAL},
+      </if>
+      <if test="companyInvestAmount != null" >
+        #{companyInvestAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="raiseCapitalLimit != null" >
+        #{raiseCapitalLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="projectStartDate != null" >
+        #{projectStartDate,jdbcType=DATE},
+      </if>
+      <if test="projectEndDate != null" >
+        #{projectEndDate,jdbcType=DATE},
+      </if>
+      <if test="projectDays != null" >
+        #{projectDays,jdbcType=INTEGER},
+      </if>
+      <if test="raiseDate != null" >
+        #{raiseDate,jdbcType=DATE},
+      </if>
+      <if test="investDay != null" >
+        #{investDay,jdbcType=DATE},
+      </if>
+      <if test="yearOpenDate != null" >
+        #{yearOpenDate,jdbcType=DATE},
+      </if>
+      <if test="projectStage != null" >
+        #{projectStage,jdbcType=INTEGER},
+      </if>
+      <if test="openTimes != null" >
+        #{openTimes,jdbcType=INTEGER},
+      </if>
+      <if test="isOpenRaise != null" >
+        #{isOpenRaise,jdbcType=INTEGER},
+      </if>
+      <if test="projectDescribe != null" >
+        #{projectDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="projectBalance != null" >
+        #{projectBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="settlementStatus != null" >
+        #{settlementStatus,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="approvalProcessId != null" >
+        #{approvalProcessId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zlkcxd.capital.dao.domain.InvestProjectCriteria" resultType="java.lang.Integer" >
+    <!--
+     WARNING -  该映射文件为自动生成, 请勿修改.
+    -->
+    select count(*) from invest_project
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    <!--
+     WARNING -  该映射文件为自动生成, 请勿修改.
+    -->
+    update invest_project
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.isDelete != null" >
+        is_delete = #{record.isDelete,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.projectName != null" >
+        project_name = #{record.projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.investProjectId != null" >
+        invest_project_id = #{record.investProjectId,jdbcType=BIGINT},
+      </if>
+      <if test="record.investType != null" >
+        invest_type = #{record.investType,jdbcType=INTEGER},
+      </if>
+      <if test="record.projectType != null" >
+        project_type = #{record.projectType,jdbcType=INTEGER},
+      </if>
+      <if test="record.projectAmount != null" >
+        project_amount = #{record.projectAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.projectProfitTate != null" >
+        project_profit_tate = #{record.projectProfitTate,jdbcType=DECIMAL},
+      </if>
+      <if test="record.companyInvestAmount != null" >
+        company_invest_amount = #{record.companyInvestAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.raiseCapitalLimit != null" >
+        raise_capital_limit = #{record.raiseCapitalLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="record.projectStartDate != null" >
+        project_start_date = #{record.projectStartDate,jdbcType=DATE},
+      </if>
+      <if test="record.projectEndDate != null" >
+        project_end_date = #{record.projectEndDate,jdbcType=DATE},
+      </if>
+      <if test="record.projectDays != null" >
+        project_days = #{record.projectDays,jdbcType=INTEGER},
+      </if>
+      <if test="record.raiseDate != null" >
+        raise_date = #{record.raiseDate,jdbcType=DATE},
+      </if>
+      <if test="record.investDay != null" >
+        Invest_day = #{record.investDay,jdbcType=DATE},
+      </if>
+      <if test="record.yearOpenDate != null" >
+        year_open_date = #{record.yearOpenDate,jdbcType=DATE},
+      </if>
+      <if test="record.projectStage != null" >
+        project_stage = #{record.projectStage,jdbcType=INTEGER},
+      </if>
+      <if test="record.openTimes != null" >
+        open_times = #{record.openTimes,jdbcType=INTEGER},
+      </if>
+      <if test="record.isOpenRaise != null" >
+        is_open_raise = #{record.isOpenRaise,jdbcType=INTEGER},
+      </if>
+      <if test="record.projectDescribe != null" >
+        project_describe = #{record.projectDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="record.projectBalance != null" >
+        project_balance = #{record.projectBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="record.settlementStatus != null" >
+        settlement_status = #{record.settlementStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.userId != null" >
+        user_id = #{record.userId,jdbcType=BIGINT},
+      </if>
+      <if test="record.approvalProcessId != null" >
+        approval_process_id = #{record.approvalProcessId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    <!--
+     WARNING -  该映射文件为自动生成, 请勿修改.
+    -->
+    update invest_project
+    set id = #{record.id,jdbcType=BIGINT},
+      is_delete = #{record.isDelete,jdbcType=INTEGER},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      project_name = #{record.projectName,jdbcType=VARCHAR},
+      invest_project_id = #{record.investProjectId,jdbcType=BIGINT},
+      invest_type = #{record.investType,jdbcType=INTEGER},
+      project_type = #{record.projectType,jdbcType=INTEGER},
+      project_amount = #{record.projectAmount,jdbcType=DECIMAL},
+      project_profit_tate = #{record.projectProfitTate,jdbcType=DECIMAL},
+      company_invest_amount = #{record.companyInvestAmount,jdbcType=DECIMAL},
+      raise_capital_limit = #{record.raiseCapitalLimit,jdbcType=DECIMAL},
+      project_start_date = #{record.projectStartDate,jdbcType=DATE},
+      project_end_date = #{record.projectEndDate,jdbcType=DATE},
+      project_days = #{record.projectDays,jdbcType=INTEGER},
+      raise_date = #{record.raiseDate,jdbcType=DATE},
+      Invest_day = #{record.investDay,jdbcType=DATE},
+      year_open_date = #{record.yearOpenDate,jdbcType=DATE},
+      project_stage = #{record.projectStage,jdbcType=INTEGER},
+      open_times = #{record.openTimes,jdbcType=INTEGER},
+      is_open_raise = #{record.isOpenRaise,jdbcType=INTEGER},
+      project_describe = #{record.projectDescribe,jdbcType=VARCHAR},
+      project_balance = #{record.projectBalance,jdbcType=DECIMAL},
+      settlement_status = #{record.settlementStatus,jdbcType=INTEGER},
+      user_id = #{record.userId,jdbcType=BIGINT},
+      approval_process_id = #{record.approvalProcessId,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zlkcxd.capital.dao.domain.InvestProject" >
+    <!--
+     WARNING -  该映射文件为自动生成, 请勿修改.
+    -->
+    update invest_project
+    <set >
+      <if test="isDelete != null" >
+        is_delete = #{isDelete,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="projectName != null" >
+        project_name = #{projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="investProjectId != null" >
+        invest_project_id = #{investProjectId,jdbcType=BIGINT},
+      </if>
+      <if test="investType != null" >
+        invest_type = #{investType,jdbcType=INTEGER},
+      </if>
+      <if test="projectType != null" >
+        project_type = #{projectType,jdbcType=INTEGER},
+      </if>
+      <if test="projectAmount != null" >
+        project_amount = #{projectAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="projectProfitTate != null" >
+        project_profit_tate = #{projectProfitTate,jdbcType=DECIMAL},
+      </if>
+      <if test="companyInvestAmount != null" >
+        company_invest_amount = #{companyInvestAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="raiseCapitalLimit != null" >
+        raise_capital_limit = #{raiseCapitalLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="projectStartDate != null" >
+        project_start_date = #{projectStartDate,jdbcType=DATE},
+      </if>
+      <if test="projectEndDate != null" >
+        project_end_date = #{projectEndDate,jdbcType=DATE},
+      </if>
+      <if test="projectDays != null" >
+        project_days = #{projectDays,jdbcType=INTEGER},
+      </if>
+      <if test="raiseDate != null" >
+        raise_date = #{raiseDate,jdbcType=DATE},
+      </if>
+      <if test="investDay != null" >
+        Invest_day = #{investDay,jdbcType=DATE},
+      </if>
+      <if test="yearOpenDate != null" >
+        year_open_date = #{yearOpenDate,jdbcType=DATE},
+      </if>
+      <if test="projectStage != null" >
+        project_stage = #{projectStage,jdbcType=INTEGER},
+      </if>
+      <if test="openTimes != null" >
+        open_times = #{openTimes,jdbcType=INTEGER},
+      </if>
+      <if test="isOpenRaise != null" >
+        is_open_raise = #{isOpenRaise,jdbcType=INTEGER},
+      </if>
+      <if test="projectDescribe != null" >
+        project_describe = #{projectDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="projectBalance != null" >
+        project_balance = #{projectBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="settlementStatus != null" >
+        settlement_status = #{settlementStatus,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="approvalProcessId != null" >
+        approval_process_id = #{approvalProcessId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zlkcxd.capital.dao.domain.InvestProject" >
+    <!--
+     WARNING -  该映射文件为自动生成, 请勿修改.
+    -->
+    update invest_project
+    set is_delete = #{isDelete,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      project_name = #{projectName,jdbcType=VARCHAR},
+      invest_project_id = #{investProjectId,jdbcType=BIGINT},
+      invest_type = #{investType,jdbcType=INTEGER},
+      project_type = #{projectType,jdbcType=INTEGER},
+      project_amount = #{projectAmount,jdbcType=DECIMAL},
+      project_profit_tate = #{projectProfitTate,jdbcType=DECIMAL},
+      company_invest_amount = #{companyInvestAmount,jdbcType=DECIMAL},
+      raise_capital_limit = #{raiseCapitalLimit,jdbcType=DECIMAL},
+      project_start_date = #{projectStartDate,jdbcType=DATE},
+      project_end_date = #{projectEndDate,jdbcType=DATE},
+      project_days = #{projectDays,jdbcType=INTEGER},
+      raise_date = #{raiseDate,jdbcType=DATE},
+      Invest_day = #{investDay,jdbcType=DATE},
+      year_open_date = #{yearOpenDate,jdbcType=DATE},
+      project_stage = #{projectStage,jdbcType=INTEGER},
+      open_times = #{openTimes,jdbcType=INTEGER},
+      is_open_raise = #{isOpenRaise,jdbcType=INTEGER},
+      project_describe = #{projectDescribe,jdbcType=VARCHAR},
+      project_balance = #{projectBalance,jdbcType=DECIMAL},
+      settlement_status = #{settlementStatus,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=BIGINT},
+      approval_process_id = #{approvalProcessId,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,461 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zlkcxd.capital.dao.mapper.CustomerChangeMapper" >
+  <resultMap id="BaseResultMap" type="com.zlkcxd.capital.dao.domain.CustomerChange" >
+    <!--
+     WARNING -  该映射文件为自动生成, 请勿修改.
+    -->
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="customer_ids" property="customerIds" jdbcType="VARCHAR" />
+    <result column="customer_manager" property="customerManager" jdbcType="BIGINT" />
+    <result column="org_id" property="orgId" jdbcType="BIGINT" />
+    <result column="group_id" property="groupId" jdbcType="BIGINT" />
+    <result column="department_id" property="departmentId" jdbcType="BIGINT" />
+    <result column="change_reason" property="changeReason" jdbcType="VARCHAR" />
+    <result column="old_manager" property="oldManager" jdbcType="BIGINT" />
+    <result column="approve_date" property="approveDate" jdbcType="TIMESTAMP" />
+    <result column="approval_process_id" property="approvalProcessId" jdbcType="VARCHAR" />
+    <result column="approve_status" property="approveStatus" jdbcType="VARCHAR" />
+    <result column="operate_user" property="operateUser" jdbcType="BIGINT" />
+    <result column="is_delete" property="isDelete" jdbcType="INTEGER" />
+    <result column="remark_info" property="remarkInfo" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <!--
+     WARNING -  该映射文件为自动生成, 请勿修改.
+    -->
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <!--
+     WARNING -  该映射文件为自动生成, 请勿修改.
+    -->
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    <!--
+     WARNING -  该映射文件为自动生成, 请勿修改.
+    -->
+    id, customer_ids, customer_manager, org_id, group_id, department_id, change_reason, 
+    old_manager, approve_date, approval_process_id, approve_status, operate_user, is_delete, 
+    remark_info, create_time, update_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zlkcxd.capital.dao.domain.CustomerChangeCriteria" >
+    <!--
+     WARNING -  该映射文件为自动生成, 请勿修改.
+    -->
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from customer_change
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limit != 0 " >
+       limit ${start} , ${limit}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    <!--
+     WARNING -  该映射文件为自动生成, 请勿修改.
+    -->
+    select 
+    <include refid="Base_Column_List" />
+    from customer_change
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="lockByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    <!--
+     WARNING -  该映射文件为自动生成, 请勿修改.
+    -->
+    select 
+    <include refid="Base_Column_List" />
+    from customer_change
+    where id = #{id,jdbcType=BIGINT} for update 
+  </select>
+  <select id="lockByExample" resultMap="BaseResultMap" parameterType="com.zlkcxd.capital.dao.domain.CustomerChangeCriteria" >
+    <!--
+     WARNING -  该映射文件为自动生成, 请勿修改.
+    -->
+    select
+    <include refid="Base_Column_List" />
+    from customer_change
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+     for update 
+  </select>
+  <select id="lastInsertId" resultType="java.lang.Long" >
+    <!--
+     WARNING -  该映射文件为自动生成, 请勿修改.
+    -->
+      select case lastId when 0 then 'can not get last insert id' else lastId end as lastId from ( select  LAST_INSERT_ID() lastId ) s1  
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    <!--
+     WARNING -  该映射文件为自动生成, 请勿修改.
+    -->
+    delete from customer_change
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zlkcxd.capital.dao.domain.CustomerChangeCriteria" >
+    <!--
+     WARNING -  该映射文件为自动生成, 请勿修改.
+    -->
+    delete from customer_change
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zlkcxd.capital.dao.domain.CustomerChange" >
+    <!--
+     WARNING -  该映射文件为自动生成, 请勿修改.
+    -->
+    insert into customer_change (id, customer_ids, customer_manager, 
+      org_id, group_id, department_id, 
+      change_reason, old_manager, approve_date, 
+      approval_process_id, approve_status, operate_user, 
+      is_delete, remark_info, create_time, 
+      update_time)
+    values (#{id,jdbcType=BIGINT}, #{customerIds,jdbcType=VARCHAR}, #{customerManager,jdbcType=BIGINT}, 
+      #{orgId,jdbcType=BIGINT}, #{groupId,jdbcType=BIGINT}, #{departmentId,jdbcType=BIGINT}, 
+      #{changeReason,jdbcType=VARCHAR}, #{oldManager,jdbcType=BIGINT}, #{approveDate,jdbcType=TIMESTAMP}, 
+      #{approvalProcessId,jdbcType=VARCHAR}, #{approveStatus,jdbcType=VARCHAR}, #{operateUser,jdbcType=BIGINT}, 
+      #{isDelete,jdbcType=INTEGER}, #{remarkInfo,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zlkcxd.capital.dao.domain.CustomerChange" >
+    <!--
+     WARNING -  该映射文件为自动生成, 请勿修改.
+    -->
+    insert into customer_change
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="customerIds != null" >
+        customer_ids,
+      </if>
+      <if test="customerManager != null" >
+        customer_manager,
+      </if>
+      <if test="orgId != null" >
+        org_id,
+      </if>
+      <if test="groupId != null" >
+        group_id,
+      </if>
+      <if test="departmentId != null" >
+        department_id,
+      </if>
+      <if test="changeReason != null" >
+        change_reason,
+      </if>
+      <if test="oldManager != null" >
+        old_manager,
+      </if>
+      <if test="approveDate != null" >
+        approve_date,
+      </if>
+      <if test="approvalProcessId != null" >
+        approval_process_id,
+      </if>
+      <if test="approveStatus != null" >
+        approve_status,
+      </if>
+      <if test="operateUser != null" >
+        operate_user,
+      </if>
+      <if test="isDelete != null" >
+        is_delete,
+      </if>
+      <if test="remarkInfo != null" >
+        remark_info,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="customerIds != null" >
+        #{customerIds,jdbcType=VARCHAR},
+      </if>
+      <if test="customerManager != null" >
+        #{customerManager,jdbcType=BIGINT},
+      </if>
+      <if test="orgId != null" >
+        #{orgId,jdbcType=BIGINT},
+      </if>
+      <if test="groupId != null" >
+        #{groupId,jdbcType=BIGINT},
+      </if>
+      <if test="departmentId != null" >
+        #{departmentId,jdbcType=BIGINT},
+      </if>
+      <if test="changeReason != null" >
+        #{changeReason,jdbcType=VARCHAR},
+      </if>
+      <if test="oldManager != null" >
+        #{oldManager,jdbcType=BIGINT},
+      </if>
+      <if test="approveDate != null" >
+        #{approveDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="approvalProcessId != null" >
+        #{approvalProcessId,jdbcType=VARCHAR},
+      </if>
+      <if test="approveStatus != null" >
+        #{approveStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="operateUser != null" >
+        #{operateUser,jdbcType=BIGINT},
+      </if>
+      <if test="isDelete != null" >
+        #{isDelete,jdbcType=INTEGER},
+      </if>
+      <if test="remarkInfo != null" >
+        #{remarkInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zlkcxd.capital.dao.domain.CustomerChangeCriteria" resultType="java.lang.Integer" >
+    <!--
+     WARNING -  该映射文件为自动生成, 请勿修改.
+    -->
+    select count(*) from customer_change
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    <!--
+     WARNING -  该映射文件为自动生成, 请勿修改.
+    -->
+    update customer_change
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.customerIds != null" >
+        customer_ids = #{record.customerIds,jdbcType=VARCHAR},
+      </if>
+      <if test="record.customerManager != null" >
+        customer_manager = #{record.customerManager,jdbcType=BIGINT},
+      </if>
+      <if test="record.orgId != null" >
+        org_id = #{record.orgId,jdbcType=BIGINT},
+      </if>
+      <if test="record.groupId != null" >
+        group_id = #{record.groupId,jdbcType=BIGINT},
+      </if>
+      <if test="record.departmentId != null" >
+        department_id = #{record.departmentId,jdbcType=BIGINT},
+      </if>
+      <if test="record.changeReason != null" >
+        change_reason = #{record.changeReason,jdbcType=VARCHAR},
+      </if>
+      <if test="record.oldManager != null" >
+        old_manager = #{record.oldManager,jdbcType=BIGINT},
+      </if>
+      <if test="record.approveDate != null" >
+        approve_date = #{record.approveDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.approvalProcessId != null" >
+        approval_process_id = #{record.approvalProcessId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.approveStatus != null" >
+        approve_status = #{record.approveStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.operateUser != null" >
+        operate_user = #{record.operateUser,jdbcType=BIGINT},
+      </if>
+      <if test="record.isDelete != null" >
+        is_delete = #{record.isDelete,jdbcType=INTEGER},
+      </if>
+      <if test="record.remarkInfo != null" >
+        remark_info = #{record.remarkInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    <!--
+     WARNING -  该映射文件为自动生成, 请勿修改.
+    -->
+    update customer_change
+    set id = #{record.id,jdbcType=BIGINT},
+      customer_ids = #{record.customerIds,jdbcType=VARCHAR},
+      customer_manager = #{record.customerManager,jdbcType=BIGINT},
+      org_id = #{record.orgId,jdbcType=BIGINT},
+      group_id = #{record.groupId,jdbcType=BIGINT},
+      department_id = #{record.departmentId,jdbcType=BIGINT},
+      change_reason = #{record.changeReason,jdbcType=VARCHAR},
+      old_manager = #{record.oldManager,jdbcType=BIGINT},
+      approve_date = #{record.approveDate,jdbcType=TIMESTAMP},
+      approval_process_id = #{record.approvalProcessId,jdbcType=VARCHAR},
+      approve_status = #{record.approveStatus,jdbcType=VARCHAR},
+      operate_user = #{record.operateUser,jdbcType=BIGINT},
+      is_delete = #{record.isDelete,jdbcType=INTEGER},
+      remark_info = #{record.remarkInfo,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zlkcxd.capital.dao.domain.CustomerChange" >
+    <!--
+     WARNING -  该映射文件为自动生成, 请勿修改.
+    -->
+    update customer_change
+    <set >
+      <if test="customerIds != null" >
+        customer_ids = #{customerIds,jdbcType=VARCHAR},
+      </if>
+      <if test="customerManager != null" >
+        customer_manager = #{customerManager,jdbcType=BIGINT},
+      </if>
+      <if test="orgId != null" >
+        org_id = #{orgId,jdbcType=BIGINT},
+      </if>
+      <if test="groupId != null" >
+        group_id = #{groupId,jdbcType=BIGINT},
+      </if>
+      <if test="departmentId != null" >
+        department_id = #{departmentId,jdbcType=BIGINT},
+      </if>
+      <if test="changeReason != null" >
+        change_reason = #{changeReason,jdbcType=VARCHAR},
+      </if>
+      <if test="oldManager != null" >
+        old_manager = #{oldManager,jdbcType=BIGINT},
+      </if>
+      <if test="approveDate != null" >
+        approve_date = #{approveDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="approvalProcessId != null" >
+        approval_process_id = #{approvalProcessId,jdbcType=VARCHAR},
+      </if>
+      <if test="approveStatus != null" >
+        approve_status = #{approveStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="operateUser != null" >
+        operate_user = #{operateUser,jdbcType=BIGINT},
+      </if>
+      <if test="isDelete != null" >
+        is_delete = #{isDelete,jdbcType=INTEGER},
+      </if>
+      <if test="remarkInfo != null" >
+        remark_info = #{remarkInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zlkcxd.capital.dao.domain.CustomerChange" >
+    <!--
+     WARNING -  该映射文件为自动生成, 请勿修改.
+    -->
+    update customer_change
+    set customer_ids = #{customerIds,jdbcType=VARCHAR},
+      customer_manager = #{customerManager,jdbcType=BIGINT},
+      org_id = #{orgId,jdbcType=BIGINT},
+      group_id = #{groupId,jdbcType=BIGINT},
+      department_id = #{departmentId,jdbcType=BIGINT},
+      change_reason = #{changeReason,jdbcType=VARCHAR},
+      old_manager = #{oldManager,jdbcType=BIGINT},
+      approve_date = #{approveDate,jdbcType=TIMESTAMP},
+      approval_process_id = #{approvalProcessId,jdbcType=VARCHAR},
+      approve_status = #{approveStatus,jdbcType=VARCHAR},
+      operate_user = #{operateUser,jdbcType=BIGINT},
+      is_delete = #{isDelete,jdbcType=INTEGER},
+      remark_info = #{remarkInfo,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

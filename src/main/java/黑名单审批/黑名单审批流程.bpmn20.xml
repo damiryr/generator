@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/processdef">
+  <process id="black-audit" name="黑名单审批" isExecutable="true">
+    <startEvent id="sid-8201545F-0645-488F-88D7-453ECCEE6680"></startEvent>
+    <userTask id="black-list-id" name="黑名单审批" activiti:candidateGroups="${processTaskService.approvalGroups(groupId)}" activiti:formKey="./workflow/blacklist-manage-check.html"></userTask>
+    <sequenceFlow id="sid-55260288-E193-45C6-81B3-1806F23D5748" sourceRef="sid-8201545F-0645-488F-88D7-453ECCEE6680" targetRef="black-list-id"></sequenceFlow>
+    <endEvent id="sid-C79AFC90-7A9A-4642-90EC-85E7B7297319" name="结束"></endEvent>
+    <sequenceFlow id="sid-20D089FD-7516-4822-9D87-3577F4BAEABC" sourceRef="black-list-id" targetRef="sid-C79AFC90-7A9A-4642-90EC-85E7B7297319"></sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_black-audit">
+    <bpmndi:BPMNPlane bpmnElement="black-audit" id="BPMNPlane_black-audit">
+      <bpmndi:BPMNShape bpmnElement="sid-8201545F-0645-488F-88D7-453ECCEE6680" id="BPMNShape_sid-8201545F-0645-488F-88D7-453ECCEE6680">
+        <omgdc:Bounds height="35.0" width="35.0" x="149.0" y="57.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="black-list-id" id="BPMNShape_black-list-id">
+        <omgdc:Bounds height="80.0" width="100.0" x="210.0" y="30.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="sid-C79AFC90-7A9A-4642-90EC-85E7B7297319" id="BPMNShape_sid-C79AFC90-7A9A-4642-90EC-85E7B7297319">
+        <omgdc:Bounds height="35.0" width="35.0" x="369.0" y="58.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="sid-55260288-E193-45C6-81B3-1806F23D5748" id="BPMNEdge_sid-55260288-E193-45C6-81B3-1806F23D5748">
+        <omgdi:waypoint x="184.0" y="74.0"></omgdi:waypoint>
+        <omgdi:waypoint x="210.0" y="70.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-20D089FD-7516-4822-9D87-3577F4BAEABC" id="BPMNEdge_sid-20D089FD-7516-4822-9D87-3577F4BAEABC">
+        <omgdi:waypoint x="310.0" y="70.0"></omgdi:waypoint>
+        <omgdi:waypoint x="339.0" y="70.0"></omgdi:waypoint>
+        <omgdi:waypoint x="339.0" y="72.0"></omgdi:waypoint>
+        <omgdi:waypoint x="369.0" y="75.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>
